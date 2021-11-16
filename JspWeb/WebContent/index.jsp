@@ -35,10 +35,10 @@
       					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       					<button class="btn btn-outline-success mx-lg-2 my-2 my-sm-0" type="submit">검색</button>
     				</form>
-					<li class="nav-item"><a class="nav-link" href="userLogin.jsp">
+					<li class="nav-item"><a class="nav-link" href=?>
 						로그인
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="userJoin.jsp">
+					<li class="nav-item"><a class="nav-link" href=?>
 						회원가입
 					</a></li>
 <%
@@ -48,7 +48,7 @@
       					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
     				</form>
-					<li class="nav-item"><a class="nav-link" href="userLogout.jsp">
+					<li class="nav-item"><a class="nav-link" href=?>
 					로그아웃
 					</a></li>
 				</ul>
