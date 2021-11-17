@@ -342,6 +342,7 @@
 		<!-- 아래 박스 전체 끝 -->
 	
 	</div>
+	<script type="text/javascript" src="js/product.js"></script>
 	<footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
 			Copyright &copy; 2021 apem5 All Rights Reserved.
 	</footer>
