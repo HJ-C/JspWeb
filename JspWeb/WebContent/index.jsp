@@ -13,7 +13,7 @@
 	<!-- 부트스트랩 CSS 추가하기 -->
 	<link rel="stylesheet" href="./css/bootstrap.min.css">
 	<!-- 커스텀 CSS 추가하기 -->
-	<link rel="stylesheet" href="./css/custom.css">
+	<link rel="stylesheet" href="./css/custom.css" type="text/css">
 </head>
 <body>
 <%
@@ -22,12 +22,11 @@
 		userID = (String) session.getAttribute("userID");
 	}
 %>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!-- 제목 -->
-	<!-- navbar-brand = 로고같은걸 출력 -->
-		<div class="container-fluid">
-			<a class="navbar-brand" href="index.jsp">중고 마켓</a>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.jsp">중고 마켓</a>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
 <%
 	if(userID == null) {
 %>
@@ -59,16 +58,90 @@
 	}
 %>
 	</nav>
-	<!-- Page Content -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  		<a class="navbar-brand" href="#">Category</a>
-  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-   			<span class="navbar-toggler-icon"></span>
-  		</button>
-	</nav>
-	<footer class="bg-dark mt-4 p-5 text-center" style="color: #FFFFFF;">
-		Copyright &copy; 2021 apem5 All Rights Reserved.
+
+		<!-- 카드 -->
+	<div class="card" style="background-image:url('./images/background.png')">
+		<img class="card-img-top">
+		<div class="card-body">
+			<h5 class="card-title">Card</h5>
+			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			<a href="#" class="btn btn-primary">Go somewhere</a>
+		</div>
+	</div>
+
+	<!-- 상품 -->
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col" >
+					<figure class="figure">
+						<a href="detail.jsp">
+						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
+						</a>
+						<figcaption class="figure-caption">임창정</figcaption>
+					</figure>
+				</div>
+				<div class="col">
+					<figure class="figure">
+						<a href="detail.jsp">
+						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
+						</a>
+						<figcaption class="figure-caption">임창정</figcaption>
+					</figure>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<figure class="figure">
+						<a href="detail.jsp">
+						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
+						</a>
+						<figcaption class="figure-caption">임창정</figcaption>
+					</figure>
+				</div>
+				<div class="col">
+					<figure class="figure">
+						<a href="detail.jsp">
+						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
+						</a>
+						<figcaption class="figure-caption">임창정</figcaption>
+					</figure>
+				</div>
+				<div class="col">
+					<figure class="figure">
+						<a href="detail.jsp">
+						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
+						</a>
+						<figcaption class="figure-caption">임창정</figcaption>
+					</figure>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- footer -->
+	<footer>
+		<div class="inner">
+			<ul class="menu">
+				<li><a href="javascript:void(0)" class= "green">개인정보 처리방침</a></li>
+				<li><a href="javascript:void(0)">운영관리 방침</a></li>
+				<li><a href="javascript:void(0)">홈페이지 이용약관</a></li>
+				<li><a href="javascript:void(0)">위치정보 이용약관</a></li>
+			</ul>
+		
+		<div class="info">
+			<span>사업자 등록번호 201-80-12345</span>
+			<span>(주)Market</span>
+			<span>TEL : 02) 1111-1111 /FAX : 031) 1111-1111</span>
+			<span>개인정보 책임자 : 최현준</span>
+		</div>
+		
+				
+		</div>
 	</footer>
+
+
 	<!-- 제이쿼리 자바스크립트 추가하기 -->
 	<script src="./js/jquery.min.js"></script>
 	<!-- 파퍼 자바스크립트 추가하기 -->
