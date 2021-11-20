@@ -11,15 +11,51 @@ import util.DatabaseUtil;
 
 public class ProductDAO {
 	
-	public int getProductId(ProductDTO pd) {
+	public ArrayList<ProductDTO> pdList() {
+		ArrayList<ProductDTO> pdList = new ArrayList<ProductDTO>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DatabaseUtil.getConnection();
+			pstmt = conn.prepareStatement("SELECT * FROM product");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				int id = rs.getInt("id");
+				String productName = rs.getString("productName");
+				int companyId = rs.getInt("companyId");
+				int price = rs.getInt("price");
+				int soldCount = rs.getInt("soldCount");
+				String detail = rs.getString("detail");
+				String imgUrl_1 = rs.getString("imgUrl_1");
+				
+				ProductDTO data = new ProductDTO();
+				data.setId(id);
+				data.setProductName(productName);
+				data.setCompanyId(companyId);
+				data.setPrice(price);
+				data.setSoldCount(soldCount);
+				data.setDetail(detail);
+				data.setImgUrl_1(imgUrl_1);
+				pdList.add(data);
+			}
+			pstmt.close();
+			conn.close();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return pdList;
+	}
+	
+	public int getProductId() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
 			conn = DatabaseUtil.getConnection();
-			pstmt = conn.prepareStatement("SELECT id FROM product WHERE productName LIKE %?%");
-			pstmt.setInt(1, pd.getId());
+			pstmt = conn.prepareStatement("SELECT id FROM product ORDER BY product ASCE");
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
@@ -37,7 +73,7 @@ public class ProductDAO {
 		return -1; // 데이터베이스 오류
 	}
 	
-	public int getPrice(ProductDTO pd) {
+	public int getPrice() {
 		String SQL = "SELECT price FROM product WHERE id = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -46,7 +82,7 @@ public class ProductDAO {
 		try {
 			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(4, pd.getPrice());
+			pstmt.setInt(4, getProductId());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {				
@@ -63,18 +99,18 @@ public class ProductDAO {
 		return -1; // 데이터베이스 오류
 	}
 	
-	public String getProductName(ProductDTO pd) {
+	public int getProductName() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
 			conn = DatabaseUtil.getConnection();
-			pstmt = conn.prepareStatement("SELECT productName FROM product WHERE id LIKE ?");
-			pstmt.setString(2, pd.getProductName());
+			pstmt = conn.prepareStatement("SELECT productName FROM product WHERE id = ?");
+			pstmt.setInt(2, getProductId());
 			rs = pstmt.executeQuery();
 			
-			return rs.getString(2);
+			return rs.getInt(2);
 		} catch (Exception e) {
 			System.out.println("ProductDAO getProductName Error");
 			e.printStackTrace();
@@ -83,21 +119,21 @@ public class ProductDAO {
 			try { if(pstmt != null) pstmt.close(); } catch (Exception e) {e.printStackTrace();}
 			try { if(rs != null) rs.close(); } catch (Exception e) {e.printStackTrace();}
 		}
-		return null; // 데이터베이스 오류
+		return -1; // 데이터베이스 오류
 	}
 	
-	public String getProductDetail(ProductDTO pd) {
+	public int getProductDetail() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
 			conn = DatabaseUtil.getConnection();
-			pstmt = conn.prepareStatement("SELECT detail FROM product WHERE id LIKE ?");
-			pstmt.setString(6, pd.getDetail());
+			pstmt = conn.prepareStatement("SELECT detail FROM product WHERE id = ?");
+			pstmt.setInt(6, getProductId());
 			rs = pstmt.executeQuery();
 			
-			return rs.getString(6);
+			return rs.getInt(6);
 		} catch (Exception e) {
 			System.out.println("ProductDAO getProductDetail Error");
 			e.printStackTrace();
@@ -106,7 +142,7 @@ public class ProductDAO {
 			try { if(pstmt != null) pstmt.close(); } catch (Exception e) {e.printStackTrace();}
 			try { if(rs != null) rs.close(); } catch (Exception e) {e.printStackTrace();}
 		}
-		return null; // 데이터베이스 오류
+		return -1; // 데이터베이스 오류
 	}
 
 }

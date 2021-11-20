@@ -5,9 +5,9 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="product.ProductDAO" %>
+<%@ page import="product.ProductDTO" %>
+<%@ page import="java.util.ArrayList" %>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,10 +20,16 @@
 	<link rel="stylesheet" href="./css/Detail.css" type="text/css">
 </head>
 <body>
-<c:set var ="pdPrice" value="${product.getPrice }"/>
-<c:set var ="pdId" value="${product.getProductId }"/>
-<c:set var ="pdName" value="${product.getProductName }"/>
-<c:set var ="pdDetail" value="${product.getProductDetail }"/>
+<%
+	ProductDAO pdDao = new ProductDAO();
+	ArrayList<ProductDTO> pdList = pdDao.pdList();
+	
+	ProductDTO data = new ProductDTO();
+	
+	for(int i=0; i<pdList.size(); i++) {
+		data = pdList.get(i);
+	}
+%>
 <!-- Header -->
     <header id="header">
         <div class="search">
@@ -49,12 +55,11 @@
             <div id="goodsSummary" class="goodsinfo">
                 <!-- 상품명 -->
                 <div id="goods-name">
-                	<fmt:formatNumber value="${product.getProductName }" type="string" />
+                	<%=data.getProductName() %>
                 </div>
                 <!-- 상품가격 -->
                 <div id="goods-price">
-                	<fmt:formatNumber value="${product.getPrice }" type="number" />
-                	<span>원</span>
+                	<span><%=data.getPrice() %>원</span>
                 </div>
                 <!-- 상품수량선택 -->
                 <div id="option">
@@ -94,7 +99,7 @@
         <ul class="nav nav-tabs">
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">제품설명
-              	<fmt:formatNumber value="${product.getProductDetail }" type="string" />
+              	<%=data.getDetail() %>
               </a>
             </li>
             <li class="nav-item">
