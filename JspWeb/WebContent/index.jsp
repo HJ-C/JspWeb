@@ -4,6 +4,9 @@
 <%@ page import="user.UserDAO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.net.URLEncoder" %>
+<%@ page import="product.ProductDAO" %>
+<%@ page import="product.ProductDTO" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,14 +71,26 @@
 			<a href="#" class="btn btn-primary">Go somewhere</a>
 		</div>
 	</div>
-
+<%
+	int pdId = 0;
+	int productId = 0;
+	ProductDAO pdDao = new ProductDAO();
+	ArrayList<ProductDTO> pdList = pdDao.pdList();
+	
+	ProductDTO data = new ProductDTO();
+	
+	for(int i=0; i<pdList.size(); i++) {
+		data = pdList.get(i);
+	}
+//	ProductDTO data = new ProductDAO().getProduct(pdId);
+%>
 	<!-- 상품 -->
 	<section>
 		<div class="container">
 			<div class="row">
 				<div class="col" >
 					<figure class="figure">
-						<a href="detail.jsp">
+						<a href="detail.jsp?productId=<%=data.getProductId() %>">
 						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
 						</a>
 						<figcaption class="figure-caption">임창정</figcaption>
@@ -83,7 +98,7 @@
 				</div>
 				<div class="col">
 					<figure class="figure">
-						<a href="detail.jsp">
+						<a href="detail.jsp?productId=<%=data.getProductId() %>">
 						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
 						</a>
 						<figcaption class="figure-caption">임창정</figcaption>
@@ -94,7 +109,7 @@
 			<div class="row">
 				<div class="col">
 					<figure class="figure">
-						<a href="detail.jsp">
+						<a href="detail.jsp?productId=<%=data.getProductId() %>">
 						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
 						</a>
 						<figcaption class="figure-caption">임창정</figcaption>
@@ -102,7 +117,7 @@
 				</div>
 				<div class="col">
 					<figure class="figure">
-						<a href="detail.jsp">
+						<a href="detail.jsp?productId=<%=data.getProductId() %>">
 						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
 						</a>
 						<figcaption class="figure-caption">임창정</figcaption>
@@ -110,7 +125,7 @@
 				</div>
 				<div class="col">
 					<figure class="figure">
-						<a href="detail.jsp">
+						<a href="detail.jsp?productId=<%=data.getProductId() %>">
 						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
 						</a>
 						<figcaption class="figure-caption">임창정</figcaption>

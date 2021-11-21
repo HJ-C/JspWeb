@@ -6,7 +6,6 @@
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="product.ProductDAO" %>
 <%@ page import="product.ProductDTO" %>
-<%@ page import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
 <html>
@@ -24,11 +23,16 @@
 	ProductDAO pdDao = new ProductDAO();
 	ArrayList<ProductDTO> pdList = pdDao.pdList();
 	
-	ProductDTO data = new ProductDTO();
+	int pdId = 0;
 	
-	for(int i=0; i<pdList.size(); i++) {
-		data = pdList.get(i);
+	if(request.getParameter("productId") != null) {
+		pdId = Integer.parseInt(request.getParameter("productId"));
+	} else if (pdId == 0) {
+		PrintWriter script = response.getWriter();
+		script.println("<script>alert('유효하지 않은 목록입니다.')</script>");
+		script.println("<script>location.href='index.jsp'</script>");
 	}
+	ProductDTO data = new ProductDAO().getProduct(pdId);
 %>
 <!-- Header -->
     <header id="header">
