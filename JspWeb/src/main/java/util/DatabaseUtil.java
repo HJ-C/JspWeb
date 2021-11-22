@@ -13,8 +13,8 @@ public class DatabaseUtil {
 			String dbURL = "jdbc:mysql://localhost:3306/jsp_web?characterEncoding=UTF-8&serverTimezone=UTC";
 			String dbID = "root";
 			String dbPassword = "tls135712!";
-			Class.forName("com.mysql.jdbc.Driver");
-			System.out.print("연결");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			System.out.println("연결되었습니다.");
 			return DriverManager.getConnection(dbURL, dbID, dbPassword);
 		} catch (Exception e) {
 			e.printStackTrace();

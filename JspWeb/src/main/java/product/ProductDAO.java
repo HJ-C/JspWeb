@@ -14,18 +14,18 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 public class ProductDAO {
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
 	
 	public ArrayList<ProductDTO> pdList() {
 		ArrayList<ProductDTO> pdList = new ArrayList<ProductDTO>();
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		try {
 			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement("SELECT * FROM product");
 			rs = pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				String productId = rs.getString("productId");
 				String productName = rs.getString("productName");
 				int companyId = rs.getInt("companyId");
@@ -54,16 +54,13 @@ public class ProductDAO {
 	}
 	
 	
-	public ProductDTO getProduct(int id) {
+	public ProductDTO getProduct(String id) {
 		ProductDTO pdDto = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		
 		try {
 			conn = DatabaseUtil.getConnection();
-			pstmt = conn.prepareStatement("SELECT * FROM product where id = ?");
-			pstmt.setInt(1, id);
+			pstmt = conn.prepareStatement("SELECT * FROM product where productId = ?");
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				pdDto = new ProductDTO();

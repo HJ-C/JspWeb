@@ -72,41 +72,40 @@
 		</div>
 	</div>
 <%
-	int pdId = 0;
-	int productId = 0;
-	ProductDAO pdDao = new ProductDAO();
-	ArrayList<ProductDTO> pdList = pdDao.pdList();
-	
+	ProductDAO pdDao = new ProductDAO();	
 	ProductDTO data = new ProductDTO();
-	
-	for(int i=0; i<pdList.size(); i++) {
-		data = pdList.get(i);
-	}
-//	ProductDTO data = new ProductDAO().getProduct(pdId);
 %>
 	<!-- 상품 -->
 	<section>
 		<div class="container">
 			<div class="row">
+<%
+	ArrayList<ProductDTO> pdList = pdDao.pdList();
+	
+	for(ProductDTO p:pdList) {
+%>
 				<div class="col" >
 					<figure class="figure">
-						<a href="detail.jsp?productId=<%=data.getProductId() %>">
+						<a href="detail.jsp?productId=<%=p.getProductId() %>">
 						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
 						</a>
-						<figcaption class="figure-caption">임창정</figcaption>
+						<figcaption class="figure-caption"><%=p.getProductName() %></figcaption>
 					</figure>
 				</div>
-				<div class="col">
+<%
+	}
+%>
+				<%-- <div class="col">
 					<figure class="figure">
 						<a href="detail.jsp?productId=<%=data.getProductId() %>">
 						<img src="./images/소주한잔.jpg" class="figure-img img-fluid rounded" alt="...">
 						</a>
 						<figcaption class="figure-caption">임창정</figcaption>
 					</figure>
-				</div>
+				</div> --%>
 			</div>
 
-			<div class="row">
+			<%-- <div class="row">
 				<div class="col">
 					<figure class="figure">
 						<a href="detail.jsp?productId=<%=data.getProductId() %>">
@@ -131,7 +130,7 @@
 						<figcaption class="figure-caption">임창정</figcaption>
 					</figure>
 				</div>
-			</div>
+			</div> --%>
 		</div>
 	</section>
 
