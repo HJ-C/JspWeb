@@ -28,6 +28,7 @@
 		script.println("<script>alert('유효하지 않은 목록입니다.')</script>");
 		script.println("<script>location.href='index.jsp'</script>");
 	}
+	
 	ProductDTO data = new ProductDAO().getProduct(pdId);
 %>
 <!-- Header -->

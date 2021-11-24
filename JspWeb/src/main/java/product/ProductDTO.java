@@ -1,10 +1,5 @@
 package product;
 
-import lombok.Builder;
-import lombok.Data;
-
-@Data
-@Builder
 public class ProductDTO {
 	private String productId;
 	private String productName;
@@ -26,6 +21,62 @@ public class ProductDTO {
 		this.price = price;
 		this.soldCount = soldCount;
 		this.detail = detail;
+		this.imgUrl_1 = imgUrl_1;
+	}
+
+	public String getProductId() {
+		return productId;
+	}
+
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public int getCompanyId() {
+		return companyId;
+	}
+
+	public void setCompanyId(int companyId) {
+		this.companyId = companyId;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getSoldCount() {
+		return soldCount;
+	}
+
+	public void setSoldCount(int soldCount) {
+		this.soldCount = soldCount;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+
+	public String getImgUrl_1() {
+		return imgUrl_1;
+	}
+
+	public void setImgUrl_1(String imgUrl_1) {
 		this.imgUrl_1 = imgUrl_1;
 	}
 }

@@ -17,6 +17,19 @@
 	<link rel="stylesheet" href="./css/bootstrap.min.css">
 	<!-- 커스텀 CSS 추가하기 -->
 	<link rel="stylesheet" href="./css/custom.css" type="text/css">
+	<!--Google Material Icons-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+	
+<!-- swiper-wrapper script -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+<link rel="stylesheet"
+   href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  		<!-- js 연동 -->
+	<script type="text/javascript" src="./js/index.js"></script>
+	
 </head>
 <body>
 <%
@@ -42,6 +55,9 @@
 					</a></li>
 					<li class="nav-item"><a class="nav-link" href="userJoin.jsp">
 						회원가입
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="cart.jsp">
+				   		장바구니
 					</a></li>
 <%
 	} else {
@@ -75,7 +91,7 @@
 	ProductDAO pdDao = new ProductDAO();	
 	ProductDTO data = new ProductDTO();
 %>
-	<!-- 상품 -->
+ 	<!-- 상품 -->
 	<section>
 		<div class="container">
 			<div class="row">
@@ -133,6 +149,8 @@
 			</div> --%>
 		</div>
 	</section>
+
+
 
 	<!-- footer -->
 	<footer>
