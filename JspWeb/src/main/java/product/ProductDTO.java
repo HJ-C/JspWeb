@@ -1,7 +1,7 @@
 package product;
 
 public class ProductDTO {
-	private String productId;
+	private int productId;
 	private String productName;
 	private int companyId;
 	private int price;
@@ -12,7 +12,7 @@ public class ProductDTO {
 	public ProductDTO() {
 	}
 	
-	public ProductDTO(String productId, String productName, int companyId, int price, int soldCount,
+	public ProductDTO(int productId, String productName, int companyId, int price, int soldCount,
 			String detail, String imgUrl_1) {
 		super();
 		this.productId = productId;
@@ -24,11 +24,11 @@ public class ProductDTO {
 		this.imgUrl_1 = imgUrl_1;
 	}
 
-	public String getProductId() {
+	public int getProductId() {
 		return productId;
 	}
 
-	public void setProductId(String productId) {
+	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 

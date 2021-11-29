@@ -26,7 +26,7 @@ public class ProductDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				String productId = rs.getString("productId");
+				int productId = rs.getInt("productId");
 				String productName = rs.getString("productName");
 				int companyId = rs.getInt("companyId");
 				int price = rs.getInt("price");
@@ -64,7 +64,7 @@ public class ProductDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				pdDto = new ProductDTO();
-				pdDto.setProductId(rs.getString("productId"));
+				pdDto.setProductId(rs.getInt("productId"));
 				pdDto.setProductName(rs.getString("productName"));
 				pdDto.setCompanyId(rs.getInt("companyId"));
 				pdDto.setPrice(rs.getInt("price"));

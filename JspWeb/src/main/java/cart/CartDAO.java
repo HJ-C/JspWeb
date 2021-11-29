@@ -9,6 +9,8 @@ import java.util.List;
 import cart.CartDTO;
 import util.DatabaseUtil;
 
+import product.ProductDTO;
+
 import javax.servlet.http.HttpServletRequest;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -26,7 +28,7 @@ public class CartDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				String cartId = rs.getString("cartId");
+				int cartId = rs.getInt("cartId");
 				String cartImg = rs.getString("cartImg");
 				String cartName = rs.getString("cartName");
 				int cartPrice = rs.getInt("cartPrice");
@@ -51,18 +53,44 @@ public class CartDAO {
 		return ctList;
 	}
 	
+	public int insertCart(ProductDTO productDTO) {
+	      String SQL = "INSERT INTO cart SELECT * FROM product WHERE productId = ?";
+	      Connection conn = null;
+	      PreparedStatement pstmt = null;
+	      ResultSet rs = null;
+	      try {
+	            conn = DatabaseUtil.getConnection();
+	            pstmt = conn.prepareStatement(SQL);
+	            pstmt.setInt(1, productDTO.getProductId());
+	            pstmt.setString(2, productDTO.getProductName().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
+	            pstmt.setInt(3, productDTO.getCompanyId());
+	            pstmt.setInt(4, productDTO.getPrice());
+	            pstmt.setInt(5, productDTO.getSoldCount());
+	            pstmt.setString(6, productDTO.getDetail().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
+	            pstmt.setString(7, productDTO.getImgUrl_1().replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\r\n", "<br>"));
+	            return pstmt.executeUpdate();
+	      } catch (Exception e){
+	         System.out.println("insertCart Error" + e);
+	      } finally {
+	         try { if(conn != null) conn.close(); } catch (Exception e) {e.printStackTrace();}
+	         try { if(pstmt != null) pstmt.close(); } catch (Exception e) {e.printStackTrace();}
+	         try { if(rs != null) rs.close(); } catch (Exception e) {e.printStackTrace();}
+	      }
+	      return -1;   // 데이터베이스 오류
+	   }
 	
-	public CartDTO getCart(String id) {
+	
+	public CartDTO getCart(String cartId) {
 		CartDTO ctDto = null;
 		
 		try {
 			conn = DatabaseUtil.getConnection();
 			pstmt = conn.prepareStatement("SELECT * FROM cart where cartId = ?");
-			pstmt.setString(1, id);
+			pstmt.setString(1, cartId);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				ctDto = new CartDTO();
-				ctDto.setCartId(rs.getString("cartId"));
+				ctDto.setCartId(rs.getInt("cartId"));
 				ctDto.setCartImg(rs.getString("cartImg"));
 				ctDto.setCartName(rs.getString("cartName"));
 				ctDto.setCartPrice(rs.getInt("cartPrice"));

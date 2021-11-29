@@ -27,12 +27,13 @@
 	if(session.getAttribute("userID") != null) {
 		userID = (String) session.getAttribute("userID");
 	}
-	
+	 String cartName = null;
+	 cartName = request.getParameter("cartName");
 	 String cartId = null;
 	 if(request.getParameter("cartId") != null) {
 			cartId = request.getParameter("cartId");
 	 } else {
-		 System.out.println("Id 오류");
+		 System.out.println(cartId);
 	 }
 	 
 	 
@@ -65,14 +66,14 @@
                         <div class="check"><input type="checkbox" name="buy" value="260" checked="" onclick="javascript:basket.checkItem();"></div>
                         <div class="img"><img src="./소주한잔.jpg" width="60"></div>
                         <div class="pname">
-                            <span><%=cartData.getCartName() %></span>
+                            <span><%=cartName %></span>
                         </div>
                     </div>
 
                     <div class="subdiv">
-                        <div class="basketprice"><input type="hidden" name="p_price" id="p_price1" class="p_price" value="20000"><%=cartData.getCartPrice() %></div>
-                        <div class="num"><%=cartData.getCartCount() %></div>
-                        <div class="sum"><%=cartData.getCartSum() %></div>    
+                        <div class="basketprice"><input type="hidden" name="p_price" id="p_price1" class="p_price" value="20000"><%--<%=cartData.getCartPrice() %>--%></div>
+                        <div class="num"><%--<%=cartData.getCartCount() %>--%></div>
+                        <div class="sum"><%--<%=cartData.getCartSum() %>--%></div>    
                     </div>
 
                     <div class="subdiv">

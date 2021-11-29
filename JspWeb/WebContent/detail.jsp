@@ -90,7 +90,9 @@
    				<!-- 장바구니 | 구매하기 -->
                 <div id="order">
                     <!-- 서버 -->
+                    <a href="cart.jsp?cartId=<%=data.getProductId() %>?cartName=<%=data.getProductName()%>">                    
                     <span class="order__Btn"><input class="order__input c1" type="button" value="장바구니"></span> 
+                    </a>
                     <span class="order__Btn"><input class="order__input c2" type="button" value="구매하기"></span> 
                 </div>
             </div>    

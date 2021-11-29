@@ -6,6 +6,8 @@
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="product.ProductDAO" %>
 <%@ page import="product.ProductDTO" %>
+<%@ page import="cart.CartDAO" %>
+<%@ page import="cart.CartDTO" %>
 
 <!DOCTYPE html>
 <html>
@@ -56,9 +58,7 @@
 					<li class="nav-item"><a class="nav-link" href="userJoin.jsp">
 						회원가입
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="cart.jsp">
-				   		장바구니
-					</a></li>
+					
 <%
 	} else {
 %>
@@ -77,7 +77,10 @@
 	}
 %>
 	</nav>
+			
 
+		
+			
 		<!-- 카드 -->
 	<div class="card" style="background-image:url('./images/background.png')">
 		<img class="card-img-top">
